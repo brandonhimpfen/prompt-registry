@@ -1,0 +1,33 @@
+prompt: support/refund_request@1.1.0
+cases:
+  - id: includes_customer_name
+    input:
+      customer_name: Taylor Smith
+      order_id: ORD-1042
+      message: My package arrived damaged and I want a refund.
+    assertions:
+      - type: contains
+        target: user
+        value: Taylor Smith
+      - type: contains
+        target: user
+        value: ORD-1042
+      - type: contains
+        target: user
+        value: 30 days
+  - id: includes_task_language
+    input:
+      customer_name: Sam Lee
+      order_id: ORD-9000
+      message: I was double charged for my order.
+      policy_window_days: 14
+    assertions:
+      - type: contains
+        target: system
+        value: policy-aware
+      - type: contains
+        target: user
+        value: note any unknowns
+      - type: contains
+        target: user
+        value: 14 days

@@ -1,0 +1,34 @@
+id: support/refund_request
+version: 1.0.0
+name: Refund Request Triage
+owners:
+  - Brandon Himpfen
+summary: Triage a customer refund request and recommend a next step.
+variables:
+  customer_name:
+    description: Customer full name
+    required: true
+  order_id:
+    description: Order identifier
+    required: true
+  message:
+    description: Customer message body
+    required: true
+prompt:
+  system: |
+    You are a careful support operations assistant.
+    Review the refund request and recommend the next step.
+    Be concise, clear, and policy-aware.
+  user: |
+    Customer: {customer_name}
+    Order ID: {order_id}
+    Message: {message}
+    Task: Summarize the issue, identify whether follow-up is needed, and recommend the most appropriate next action.
+metadata:
+  model_family: gpt
+  risk_level: low
+  use_case: support
+changelog:
+  - version: 1.0.0
+    date: 2026-03-31
+    notes: Initial prompt.
